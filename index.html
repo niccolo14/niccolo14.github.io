@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDLAB | Stampa 3D & Prototipazione</title>
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Icone (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- IMPOSTAZIONI GENERALI --- */
+        :root {
+            --primary-color: #00d4ff; /* Blu Neon */
+            --bg-dark: #121212;
+            --bg-light: #1e1e1e;
+            --text-main: #ffffff;
+            --text-secondary: #b0b0b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAVIGAZIONE --- */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION (COPERTINA) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: #000;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s, background 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #fff;
+        }
+
+        /* --- SERVIZI --- */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-light);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+        }
+
+        /* --- PORTFOLIO --- */
+        .portfolio {
+            background-color: var(--bg-light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            filter: grayscale(40%);
+            transition: filter 0.3s;
+        }
+
+        .gallery-item img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* --- CONTATTI --- */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #000;
+            padding: 20px 0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Semplificato per demo */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGAZIONE -->
+    <header>
+        <div class="container">
+            <div class="logo">CDLAB</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#servizi">Servizi</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Trasformiamo idee in <br><span>Oggetti Reali</span></h1>
+            <p>Servizi professionali di Stampa 3D, Prototipazione Rapida e Fornitura Materiali per Maker e Professionisti.</p>
+            <a href="#contatti" class="btn">Richiedi Preventivo</a>
+        </div>
+    </section>
+
+    <!-- SERVIZI -->
+    <section id="servizi" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cosa Facciamo</h2>
+                <p>Soluzioni complete per la manifattura additiva</p>
+            </div>
+            <div class="services-grid">
+                <!-- Servizio 1 -->
+                <div class="card">
+                    <i class="fas fa-cube"></i>
+                    <h3>Stampa 3D FDM & SLA</h3>
+                    <p>Produzione di parti in PLA, PETG, ABS o Resina ad alta precisione. Dal singolo pezzo alla piccola serie.</p>
+                </div>
+                <!-- Servizio 2 -->
+                <div class="card">
+                    <i class="fas fa-pencil-ruler"></i>
+                    <h3>Progettazione & Modellazione</h3>
+                    <p>Hai solo un'idea o uno schizzo? Trasformiamo il tuo concetto in un file STL pronto per la stampa.</p>
+                </div>
+                <!-- Servizio 3 -->
+                <div class="card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Fornitura & Accessori</h3>
+                    <p>Vendita di filamenti di qualità, ricambi per stampanti e accessori per la post-produzione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Lavori</h2>
+                <p>Alcuni esempi delle nostre stampe</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- Immagini Placeholder (Sostituisci i link con le tue foto reali) -->
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1615858066378-b99672688461?auto=format&fit=crop&w=600&q=80" alt="Stampa 3D 1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1631541909061-71e349d1f203?auto=format&fit=crop&w=600&q=80" alt="Stampa 3D 2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1597587847427-4c3d82f27b9c?auto=format&fit=crop&w=600&q=80" alt="Stampa 3D 3"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517420704952-d9f39714a1d9?auto=format&fit=crop&w=600&q=80" alt="Stampa 3D 4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section id="contatti" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contattaci</h2>
+                <p>Parliamo del tuo prossimo progetto</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@cdlab.it">info@cdlab.it</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+39 123 456 7890</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Via della Stampa, 10 - Roma</span>
+                </div>
+                <div style="margin-top: 30px;">
+                    <a href="#" class="btn">Scrivici su WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 CDLAB - Stampa 3D Professional. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
